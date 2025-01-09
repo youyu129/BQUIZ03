@@ -17,7 +17,7 @@
             <div style="display:flex;justify-content:space-between;">
                 <div style="width:25%"><img src="./upload/<?=$row['img'];?>" style="width:65px"></div>
                 <div style="width:25%">
-                    <input type="text" name="name" value="<?=$row['name'];?>">
+                    <input type="text" name="name[]" value="<?=$row['name'];?>">
                 </div>
                 <div style="width:25%">
                     <input type="button" value="往上">
@@ -33,14 +33,14 @@
                     </select>
                 </div>
 
-
+                <input type="hidden" name="id[]" value="<?=$row['id'];?>">
 
             </div>
             <?php
             endforeach;
             ?>
         </div>
-        <div class="ct" style="margin-top:10px">
+        <div class="ct">
             <input type="submit" value="編輯確定">
             <input type="reset" value="重置">
         </div>
