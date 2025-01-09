@@ -161,4 +161,4 @@ function to($url){
     header("location:".$url);
 }
 
-$Poster=new DB('poster');
+$Poster=new DB('posters');
