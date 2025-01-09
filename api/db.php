@@ -3,7 +3,7 @@
 session_start();
 
 class DB{
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web19";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db19";
     protected $pdo;
     protected $table;
 
@@ -147,7 +147,7 @@ class DB{
 }
 // this要在物件內才可用
 function q($sql){
-    $pdo=new PDO("mysql:host=localhost;charset=utf8;dbname=web19",'root','');
+    $pdo=new PDO("mysql:host=localhost;charset=utf8;dbname=db19",'root','');
     return $pdo->query($sql)->fetchAll();
 } 
 
@@ -161,4 +161,4 @@ function to($url){
     header("location:".$url);
 }
 
-// $Total=new DB('total');
+$Poster=new DB('poster');
