@@ -17,7 +17,7 @@
 }
 </style>
 
-<form action="./api/add_movie.php" method="post" enctype="multpart/form-data">
+<form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
 
     <div style="width:70%;margin:auto;display:flex;">
         <div style="width:15%">影片資料</div>
