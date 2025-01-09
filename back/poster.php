@@ -26,13 +26,13 @@
                 <div style="width:24%">
                     <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>顯示
                     <input type="checkbox" name="del[]" value="<?=$row['id'];?>">刪除
-
+                    <select name="ani[]" id="">
+                        <option value="1" <?=($row['ani']==1)?'selected':'';?>>淡入淡出</option>
+                        <option value="2" <?=($row['ani']==2)?'selected':'';?>>縮放</option>
+                        <option value="3" <?=($row['ani']==3)?'selected':'';?>>滑入滑出</option>
+                    </select>
                 </div>
-                <select name="ani[]" id="">
-                    <option value="1" <?=($row['ani']==1)?'selected':'';?>>淡入淡出</option>
-                    <option value="2" <?=($row['ani']==2)?'selected':'';?>>縮放</option>
-                    <option value="3" <?=($row['ani']==3)?'selected':'';?>>滑入滑出</option>
-                </select>
+
 
 
             </div>
@@ -40,7 +40,7 @@
             endforeach;
             ?>
         </div>
-        <div class="ct">
+        <div class="ct" style="margin-top:10px">
             <input type="submit" value="編輯確定">
             <input type="reset" value="重置">
         </div>
