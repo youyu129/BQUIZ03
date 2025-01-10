@@ -14,5 +14,7 @@ if(isset($_POST['id'])){
         }
     }
 }
+
 to("../back.php?do=poster");
+
 ?>
