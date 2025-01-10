@@ -11,12 +11,37 @@
     box-sizing: border-box;
     font-size: 13px;
 }
+
+.poster-block * {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.poster-block {
+    width: 420px;
+    height: 400px;
+}
+
+.lists {
+    width: 210px;
+    height: 280px;
+    margin: auto;
+
+    position: relative;
+}
+
+.controls {
+    width: 100%;
+    height: 100px;
+    margin: 10px auto;
+}
 </style>
 
 <div class="half" style="vertical-align:top;">
     <h1>預告片介紹</h1>
     <div class="rb tab" style="width:95%;">
-        <div id="abgne-block-20111227">
+        <div class="poster-block">
             <ul class="lists">
             </ul>
             <ul class="controls">
@@ -24,6 +49,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="half">
     <h1>院線片清單</h1>
 
