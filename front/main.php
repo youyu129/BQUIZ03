@@ -88,7 +88,7 @@
     flex-shrink: 0;
     text-align: center;
     position: relative;
-    left: 10px;
+
 
 }
 
@@ -253,19 +253,24 @@ function sliders() {
 let total=$(".icon").length;
 let p=0;
 $(".left,.right").on("click",function(){
+    
     if($(this).hasClass('left')){
         // if((p-1)>=0){
         //     p--;
+        console.log('left');
         
         // 三元運算式
         p=(p-1>0)?p-1:0;
+        
     }else{
+        console.log('right')
         // if(p+1<=total-4){
         //     p++; 
         
         // 三元運算式
         p=(p+1<=total-4)?p+1:total-4;
-    }    
+    }   
+    console.log(p) 
     $(".icon").animate({right:80*p});
 })
 </script>
