@@ -258,13 +258,15 @@ $(".left,.right").on("click",function(){
     if($(this).hasClass('left')){
         // if((p-1)>=0){
         //     p--;
-        console.log('left');
+        
+        // console.log('left');
         
         // 三元運算式
         p=(p-1>0)?p-1:0;
         
     }else{
-        console.log('right')
+        // console.log('right')
+
         // if(p+1<=total-4){
         //     p++; 
         
