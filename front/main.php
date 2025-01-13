@@ -140,44 +140,7 @@
     </div>
 </div>
 
-<script>
-$(".poster").eq(0).show();
 
-let slider = setInterval(() => {
-    sliders();
-}, 2500);
-
-
-function sliders() {
-    let now = $(".poster:visible").index();
-    let next = ($(".poster").length == now + 1) ? 0 : now + 1;
-    let ani = $(".poster").eq(next).data('ani');
-
-    console.log(now, next);
-
-    switch (ani) {
-        case 1:
-            //淡入淡出
-            $(".poster").eq(now).fadeOut(1000, function() {
-                $(".poster").eq(next).fadeIn(1000);
-            });
-            break;
-        case 2:
-            //縮放
-            $(".poster").eq(now).hide(1000, function() {
-                $(".poster").eq(next).show(1000);
-            });
-            break;
-        case 3:
-            //滑入滑出
-            $(".poster").eq(now).slideUp(1000, function() {
-                $(".poster").eq(next).slideDown(1000);
-            });
-
-            break;
-    }
-}
-</script>
 
 
 
@@ -248,3 +211,52 @@ function sliders() {
         </div>
     </div>
 </div>
+
+<script>
+$(".poster").eq(0).show();
+
+let slider = setInterval(() => {
+    sliders();
+}, 2500);
+
+
+function sliders() {
+    let now = $(".poster:visible").index();
+    let next = ($(".poster").length == now + 1) ? 0 : now + 1;
+    let ani = $(".poster").eq(next).data('ani');
+
+    console.log(now, next);
+
+    switch (ani) {
+        case 1:
+            //淡入淡出
+            $(".poster").eq(now).fadeOut(1000, function() {
+                $(".poster").eq(next).fadeIn(1000);
+            });
+            break;
+        case 2:
+            //縮放
+            $(".poster").eq(now).hide(1000, function() {
+                $(".poster").eq(next).show(1000);
+            });
+            break;
+        case 3:
+            //滑入滑出
+            $(".poster").eq(now).slideUp(1000, function() {
+                $(".poster").eq(next).slideDown(1000);
+            });
+
+            break;
+    }
+}
+
+let total=$(".icon").length;
+let p=0;
+$(".left,.right").on("click",function(){
+    if((p+1)<=(total-4)){
+        p++;
+        $(".icon").animate({right:80*p});
+    }
+    
+})
+</script>
