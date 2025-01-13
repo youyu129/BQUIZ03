@@ -50,3 +50,12 @@
         </tr>
     </table>
 </form>
+
+<script>
+getMovies()
+function getMovies(){
+    $.get("api/get_movies.php",function(movies){
+        $("#movie").html(movies);
+    })
+}
+</script>
