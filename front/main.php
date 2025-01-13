@@ -219,12 +219,13 @@ let slider = setInterval(() => {
     sliders();
 }, 2500);
 
-
-function sliders() {
+function sliders(next=-1) {
     let now = $(".poster:visible").index();
-    let next = ($(".poster").length == now + 1) ? 0 : now + 1;
+    if(next==-1){
+        next = ($(".poster").length == now + 1) ? 0 : now + 1;
+    }
     let ani = $(".poster").eq(next).data('ani');
-
+    
     // console.log(now, next);
 
     switch (ani) {
@@ -282,6 +283,10 @@ $(".icons").hover(
         slider = setInterval(() => {
         sliders();
         }, 2500);
-    }
-)
+    })
+
+$(".icon").on("click",function(){
+    let next=$(this).index();
+    sliders(next);
+})
 </script>
