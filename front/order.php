@@ -52,10 +52,26 @@
 </form>
 
 <script>
-getMovies()
+
+getMovies();
+
+let id=new URLSearchParams(location.href).get('id');
+console.log(id);
+
 function getMovies(){
     $.get("api/get_movies.php",function(movies){
         $("#movie").html(movies);
+
+        if(parseInt(id)>0){
+            $(`#movie option[value='${id}']`).prop('selected',true);        
+        }
+    })
+}
+
+getDate()
+function getDate(){
+    $.get("api/get_dates.php",function(dates){
+        $("#date").html(dates);
     })
 }
 </script>
