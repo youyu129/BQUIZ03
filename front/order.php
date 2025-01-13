@@ -68,10 +68,9 @@ function getMovies(){
     })
 }
 
-getDate()
-function getDate(){
-    $.get("api/get_dates.php",function(dates){
-        $("#date").html(dates);
+function getDays(){
+    $.get("api/get_days.php",{movie:$("#movie").val()},function(days){
+        $("#date").html(days);
     })
 }
 </script>
