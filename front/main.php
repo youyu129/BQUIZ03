@@ -225,7 +225,7 @@ function sliders() {
     let next = ($(".poster").length == now + 1) ? 0 : now + 1;
     let ani = $(".poster").eq(next).data('ani');
 
-    console.log(now, next);
+    // console.log(now, next);
 
     switch (ani) {
         case 1:
@@ -253,10 +253,19 @@ function sliders() {
 let total=$(".icon").length;
 let p=0;
 $(".left,.right").on("click",function(){
-    if((p+1)<=(total-4)){
-        p++;
-        $(".icon").animate({right:80*p});
-    }
-    
+    if($(this).hasClass('left')){
+        // if((p-1)>=0){
+        //     p--;
+        
+        // 三元運算式
+        p=(p-1>0)?p-1:0;
+    }else{
+        // if(p+1<=total-4){
+        //     p++; 
+        
+        // 三元運算式
+        p=(p+1<=total-4)?p+1:total-4;
+    }    
+    $(".icon").animate({right:80*p});
 })
 </script>
