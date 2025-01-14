@@ -45,7 +45,7 @@
     <tr>
         <td colspan='2' class='ct'>
             <input type="button" value="確定" onclick="booking()">
-            <input type="reset" value="重置">     
+            <input type="reset" value="重置" onclick="checkout()">     
         </td>
     </tr>
 </table>
@@ -111,6 +111,16 @@ function booking(){
         $("#booking").html(booking);
         $("#booking,#order").toggle();
     })
+}
+
+function checkout(){
+    movie.seats=seats;
+    // console.log(movie);
+    $.post("api/checkout.php",movie,function(res){
+        console.log(res);
+    })
+    // console.log(seats);
+    
 }
 
 </script>
