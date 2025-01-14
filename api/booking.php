@@ -7,7 +7,7 @@
 #movieInfo{
     width:540px;
     height:120px;
-        margin:auto;
+    margin:auto;
     background:#ccc;
     padding:10px 100px;
 }
@@ -27,22 +27,20 @@
     padding:2px;
     position:relative;
 }
-
 .null{
     background:url("icon/03D02.png") center no-repeat;
 }
 .booked{
     background:url("icon/03D03.png") center no-repeat;
 }
+
 .chk{
     position:absolute;
     right:2px;
     bottom:2px;
 }
-
 </style>
-<?php 
-include_once "db.php";
+<?php  include_once "db.php";
 
 $rows=$Order->all(['movie'=>$_GET['name'],'date'=>$_GET['date'],'session'=>$_GET['session']]);
 $seats=[];
@@ -50,15 +48,19 @@ foreach($rows as $row){
     $tmp=unserialize($row['seats']);
     $seats=array_merge($seats,$tmp);
 }
-
-// dd($seats);
+//dd($seats);
 ?>
 
 <div id="info">
-    <?php
+    <?php 
         for($i=0;$i<20;$i++){
             $booked=(in_array($i,$seats))?"booked":"null";
             echo "<div class='seat $booked'>";
+            /* if(in_array($i,$seats)){
+                echo "<div class='seat booked'>";
+            }else{
+                echo "<div class='seat null'>";
+            } */
             echo  floor($i/5)+1 ."排".($i%5+1)."號";
             if(!in_array($i,$seats)){
                 echo "<input type='checkbox' class='chk' value='$i'>";
@@ -68,7 +70,6 @@ foreach($rows as $row){
     ?>
 
 </div>
-
 <div id="movieInfo">
     <div>您選擇的電影是：<?=$_GET['name'];?></div>
     <div>您選擇的時刻是：<?=$_GET['date']."&nbsp;&nbsp;".$_GET['session'];?></div>
@@ -77,17 +78,16 @@ foreach($rows as $row){
         <button onclick="$('#booking,#order').toggle()">上一步</button>
         <button onclick="checkout()">訂購</button>
     </div>
-</div>
 
+</div>
 <script>
 let seats=new Array();
-// 數字轉為國字的寫法 建立物件
-// let num={1:'一',2:'二',3:'三',4:'四'};
+//let num={1:'一',2:'二',3:'三',4:'四'};
 
 $(".chk").on("change",function(){
     if($(this).prop('checked')){
         if(seats.length>3){
-            alert("最多只能選四張票")
+            alert("最多只能選四張票");
             $(this).prop('checked',false)
         }else{
             seats.push($(this).val())
@@ -98,19 +98,18 @@ $(".chk").on("change",function(){
         $(this).parent().removeClass('booked').addClass('null')
     }
     $("#tickets").text(seats.length)
-    
-    // 數字轉為國字的寫法
-    // $("#tickets").text(num[seats.length])
-    
-    // console.log('seats',seats);
+    //$("#tickets").text(num[seats.length])
+    //console.log(seats)
+
 })
 
 function checkout(){
     movie.seats=seats;
-    // console.log(movie);
+    //console.log(movie)
     $.post("api/checkout.php",movie,function(res){
-        console.log(res);
-        $("#mm").html(res)
+        //console.log(res)
+        $("#mm").html(res);
     })
 }
+
 </script>
