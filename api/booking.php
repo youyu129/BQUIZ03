@@ -91,11 +91,9 @@ $(".chk").on("change",function(){
             $(this).prop('checked',false)
         }else{
             seats.push($(this).val())
-            $(this).parent().removeClass('null').addClass('booked')
         }
     }else{
         seats.splice(seats.indexOf($(this).val()),1)
-        $(this).parent().removeClass('booked').addClass('null')
     }
     $("#tickets").text(seats.length)
     //$("#tickets").text(num[seats.length])
