@@ -88,4 +88,13 @@ $(".chk").on("change",function(){
     
     // console.log('seats',seats);
 })
+
+function checkout(){
+    movie.seats=seats;
+    // console.log(movie);
+    $.post("api/checkout.php",movie,function(res){
+        console.log(res);
+        $("#mm").html(res)
+    })
+}
 </script>
