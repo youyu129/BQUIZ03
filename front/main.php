@@ -108,13 +108,13 @@
     <div class="rb tab" style="width:95%;">
         <div class="poster-block">
             <div class="lists">
-                <?php 
-                    $posters=$Poster->all(['sh'=>1]," order by rank");
-                    foreach($posters as $idx => $poster):
+                <?php
+                    $posters = $Poster->all(['sh' => 1], " order by rank");
+                    foreach ($posters as $idx => $poster):
                 ?>
-                <div class="poster" data-ani="<?=$poster['ani'];?>">
-                    <img src="./upload/<?=$poster['img'];?>" alt="">
-                    <span><?=$poster['name'];?></span>
+                <div class="poster" data-ani="<?php echo $poster['ani'];?>">
+                    <img src="./upload/<?php echo $poster['img'];?>" alt="">
+                    <span><?php echo $poster['name'];?></span>
                 </div>
                 <?php
                     endforeach;
@@ -124,15 +124,15 @@
                 <div class='left'></div>
                 <div class='icons'>
                     <?php
-                    foreach($posters as $idx => $poster):
+                        foreach ($posters as $idx => $poster):
                     ?>
                     <div class="icon">
-                        <img src="./upload/<?=$poster['img'];?>" alt="">
-                        <span><?=$poster['name'];?></span>
+                        <img src="./upload/<?php echo $poster['img'];?>" alt="">
+                        <span><?php echo $poster['name'];?></span>
                     </div>
                     <?php
-                    endforeach;
-                ?>
+                        endforeach;
+                    ?>
                 </div>
                 <div class='right'></div>
             </div>
@@ -146,64 +146,64 @@
 
 <div class="half">
     <h1>院線片清單</h1>
-    <?php 
-    $today=date("Y-m-d");
-    $ondate=date("Y-m-d",strtotime("-2 days"));
+    <?php
+        $today  = date("Y-m-d");
+        $ondate = date("Y-m-d", strtotime("-2 days"));
 
-    $all=$Movie->count(['sh'=>1]," AND ondate BETWEEN '$ondate' AND '$today'");
-    $div=4;
-    $pages=ceil($all/$div);
-    $now=$_GET['p']??1; 
-    $start=($now-1)*$div;
+        $all = $Movie->count(['sh' => 1], " AND ondate BETWEEN '$ondate' AND '$today'");
+        //echo $all;
+        $div   = 4;
+        $pages = ceil($all / $div);
+        $now   = $_GET['p'] ?? 1;
+        $start = ($now - 1) * $div;
 
-    $rows=$Movie->all(['sh'=>1]," AND ondate BETWEEN '$ondate' AND '$today' order by rank limit $start,$div");
+        $rows = $Movie->all(['sh' => 1], " AND ondate BETWEEN '$ondate' AND '$today' order by rank limit $start,$div");
 
     ?>
 
     <div class="rb tab" style="width:95%;">
         <div style="display:flex;flex-wrap:wrap">
             <?php
-            foreach($rows as $row):
+                foreach ($rows as $row):
             ?>
             <div class='movie-item'>
                 <div style="width:65px;">
-                    <a href="?do=intro&id=<?=$row['id'];?>">
-                        <img src="./upload/<?=$row['poster'];?>" style="width:60px;height:80px;">
+                    <a href="?do=intro&id=<?php echo $row['id'];?>">
+                        <img src="./upload/<?php echo $row['poster'];?>" style="width:60px;height:80px;">
                     </a>
                 </div>
                 <div style="width:calc(100% - 65px);">
-                    <div style="font-size:18px;"><?=$row['name'];?></div>
+                    <div style="font-size:18px;"><?php echo $row['name'];?></div>
                     <div>分級:
-                        <img src="./icon/03C0<?=$row['level'];?>.png" style="width:20px;vertical-align:middle">
-                        <?=$Movie::$level[$row['level']];?>
+                        <img src="./icon/03C0<?php echo $row['level'];?>.png" style="width:20px;vertical-align:middle">
+                        <?php echo $Movie::$level[$row['level']];?>
                     </div>
-                    <div>上映日期:<?=$row['ondate'];?></div>
+                    <div>上映日期:<?php echo $row['ondate'];?></div>
                 </div>
                 <div style="width:100%;" class="ct">
-                    <button onclick="location.href='?do=intro&id=<?=$row['id'];?>'">劇情簡介</button>
-                    <button onclick="location.href='?do=order&id=<?=$row['id'];?>'">線上訂票</button>
+                    <button onclick="location.href='?do=intro&id=<?php echo $row['id'];?>'">劇情簡介</button>
+                    <button onclick="location.href='?do=order&id=<?php echo $row['id'];?>'">線上訂票</button>
                 </div>
             </div>
             <?php
-            endforeach;
+                endforeach;
             ?>
         </div>
         <div class="ct a">
-            <?php 
+            <?php
 
-                if(($now-1)>0){
-                    echo "<a href='?p=".($now-1)."' > < </a>";
+                if (($now - 1) > 0) {
+                    echo "<a href='?p=" . ($now - 1) . "' > < </a>";
                 }
 
-                for($i=1;$i<=$pages;$i++){
-                    $fontsize=($i==$now)?'24px':'18px';
+                for ($i = 1; $i <= $pages; $i++) {
+                    $fontsize = ($i == $now) ? '24px' : '18px';
                     echo "<a href='?p=$i' style='font-size:$fontsize'>$i</a>";
                 }
 
-                if(($now+1)<=$pages){
-                    echo "<a href='?p=".($now+1)."' > > </a>";
+                if (($now + 1) <= $pages) {
+                    echo "<a href='?p=" . ($now + 1) . "' > > </a>";
                 }
-
 
             ?>
 
@@ -219,13 +219,13 @@ let slider = setInterval(() => {
     sliders();
 }, 2500);
 
-function sliders(next=-1) {
+function sliders(next = -1) {
     let now = $(".poster:visible").index();
-    if(next==-1){
+    if (next == -1) {
         next = ($(".poster").length == now + 1) ? 0 : now + 1;
     }
     let ani = $(".poster").eq(next).data('ani');
-    
+
     // console.log(now, next);
 
     switch (ani) {
@@ -251,44 +251,46 @@ function sliders(next=-1) {
     }
 }
 
-let total=$(".icon").length;
-let p=0;
-$(".left,.right").on("click",function(){
-    
-    if($(this).hasClass('left')){
+let total = $(".icon").length;
+let p = 0;
+$(".left,.right").on("click", function() {
+
+    if ($(this).hasClass('left')) {
         // if((p-1)>=0){
         //     p--;
-        
+
         // console.log('left');
-        
+
         // 三元運算式
-        p=(p-1>0)?p-1:0;
-        
-    }else{
+        p = (p - 1 > 0) ? p - 1 : 0;
+
+    } else {
         // console.log('right')
 
         // if(p+1<=total-4){
-        //     p++; 
-        
+        //     p++;
+
         // 三元運算式
-        p=(p+1<=total-4)?p+1:total-4;
-    }   
-    console.log(p) 
-    $(".icon").animate({right:80*p});
+        p = (p + 1 <= total - 4) ? p + 1 : total - 4;
+    }
+    console.log(p)
+    $(".icon").animate({
+        right: 80 * p
+    });
 })
 
 $(".icons").hover(
-    function(){
+    function() {
         slider = clearInterval(slider);
     },
-    function(){
+    function() {
         slider = setInterval(() => {
-        sliders();
+            sliders();
         }, 2500);
     })
 
-$(".icon").on("click",function(){
-    let next=$(this).index();
+$(".icon").on("click", function() {
+    let next = $(this).index();
     sliders(next);
 })
 </script>
