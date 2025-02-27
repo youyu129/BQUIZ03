@@ -16,22 +16,34 @@ function getMovies() {
         $(".sw").on("click", function() {
             let id = $(this).data('id');
             let sw = $(this).data('sw');
-            $.post("./api/sw.php", {table: 'Movie',id,sw}, () => {
+            $.post("./api/sw.php", {
+                table: 'Movie',
+                id,
+                sw
+            }, () => {
                 getMovies();
             })
         })
 
         $(".show").on("click", function() {
             let id = $(this).data('id');
-            $.post("./api/show.php", {id}, () => {
+            $.post("./api/show.php", {
+                id
+            }, () => {
                 getMovies();
             })
         })
 
         $(".del").on("click", function() {
             let id = $(this).data('id');
-            $.post("./api/del.php", { table: 'Movie', id}, () => {
-                getMovies();
+            $movie = $(this).parents(".movie-item");
+            //console.log($($movie).html());
+            $.post("./api/del.php", {
+                table: 'Movie',
+                id
+            }, () => {
+                //getMovies();
+                $($movie).remove();
             })
         })
     });
