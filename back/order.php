@@ -112,33 +112,4 @@ function qdel(){
     }
 }
 
-function qdel(){
-    let type=$("input[name='type']:checked").val();
-    let data="";
-    
-    switch(type){
-        case "date":
-            if($(#date).val()==null){
-                alert("請選擇日期");
-                return;
-            }else{
-                data=$("#date").val();
-            }
-            break;
-        case "movie":
-            if($(#movie).val()==""){
-                alert("請選擇電影");
-                return;
-            }else{
-                data=$("#movie").val();
-            }
-            break;
-        }
-    if(confirm("確定要刪除所有符合條件的訂單嗎？")){
-        $.post("api/qdel.php",{type,data},function(){
-            location.reload();
-        })
-    }
-}
-
 </script>
