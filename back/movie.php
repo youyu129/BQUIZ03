@@ -21,7 +21,15 @@ function getMovies() {
                 id,
                 sw
             }, () => {
-                getMovies();
+                // getMovies();
+                switch ($(this).text()) {
+                    case "顯示":
+                        $(this).text("隱藏");
+                        break;
+                    case "隱藏":
+                        $(this).text("顯示");
+                        break;
+                }
             })
         })
 
